@@ -8,15 +8,15 @@ before_install:
 script:
   - docker run -e CI=true vasanthkandadi/react-test npm test
 
-  after_success:
-    - docker build -t vasanthkandadi/multi-client ./client
-    - docker build -t vasanthkandadi/multi-nginx ./nginx
-    - docker build -t vasanthkandadi/multi-server ./server
-    - docker build -t vasanthkandadi/multi-worker ./worker
-    #Log into docker CLI
-    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-    #Push these images to docker hub
-    - docker push vasanthkandadi/multi-client
-    - docker push vasanthkandadi/multi-nginx
-    - docker push vasanthkandadi/multi-server
-    - docker push vasanthkandadi/multi-worker
+after_success:
+  - docker build -t vasanthkandadi/multi-client ./client
+  - docker build -t vasanthkandadi/multi-nginx ./nginx
+  - docker build -t vasanthkandadi/multi-server ./server
+  - docker build -t vasanthkandadi/multi-worker ./worker
+  #Log into docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  #Push these images to docker hub
+  - docker push vasanthkandadi/multi-client
+  - docker push vasanthkandadi/multi-nginx
+  - docker push vasanthkandadi/multi-server
+  - docker push vasanthkandadi/multi-worker
