@@ -20,5 +20,3 @@ after_success:
 - docker push vasanthkandadi/multi-nginx
 - docker push vasanthkandadi/multi-server
 - docker push vasanthkandadi/multi-worker
-
-#Test
